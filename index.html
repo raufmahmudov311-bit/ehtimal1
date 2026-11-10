@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ehtimal nəzəriyyəsi — Mövzu 1: Ehtimalın əsas xassələri</title>
+<meta name="description" content="Ehtimal nəzəriyyəsi, mövzu 1: izah, həll olunmuş nümunələr və imtahan tipli test.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Məzmun"><b>Mövzu 1 · FTN 1-2</b>
+<a href="#giris">Giriş və simulyator</a><a href="#anlayis">Əsas anlayışlar</a><a href="#emeller">Hadisələr üzərində əməllər</a><a href="#aksiom">Kolmoqorov aksiomları</a><a href="#xasse">Ehtimalın xassələri</a><a href="#stat">Statistik ehtimal</a><a href="#klassik">Klassik ehtimal</a><a href="#komb">Kombinatorika</a><a href="#iki">İki ümumi məsələ</a><a href="#numune">Həll olunmuş nümunələr</a><a href="#test">Özünü yoxla</a></nav>
+<main>
+<header class="hero" id="giris">
+<span class="tag">Ehtimal nəzəriyyəsi · Mövzu 1</span>
+<h1>Ehtimalın əsas xassələri</h1>
+<p>Əsas anlayışlar, hadisələr, Kolmoqorov aksiomları, statistik və klassik ehtimal, kombinatorika. Əvvəl nəzəriyyəni oxu, sonra səhifənin sonundakı imtahan tipli testlə özünü yoxla.</p>
+<div class="lab"><h3>Statistik ehtimalı özün gör</h3><small>Zər at: «6» gəlmə tezliyi atışlar çoxaldıqca nəzəri 1/6 dəyərinə (qırıq xətt) yaxınlaşır.</small>
+<div id="dice" aria-live="polite"></div>
+<div class="btns"><button data-r="10">10 atış</button><button data-r="100">100 atış</button><button data-r="1000">1000 atış</button><button class="g" data-r="0">Sıfırla</button></div>
+<div class="info" id="dinfo"></div></div>
+</header>
+
+<section id="anlayis"><h2>1. Əsas anlayışlar</h2>
+<p><b>Təsadüfi təcrübə (sınaq)</b> — eyni şəraitdə təkrar oluna bilən və nəticəsi əvvəlcədən dəqiq bilinməyən hərəkətdir (zər atmaq, kartı çəkmək).</p>
+<p><b>Elementar hadisə (ω)</b> — təcrübənin ən sadə, daha bölünməyən nəticəsi. Bütün elementar hadisələrin çoxluğu <b>elementar hadisələr fəzası Ω</b> adlanır. Zər üçün Ω = {1, 2, 3, 4, 5, 6}.</p>
+<p><b>Hadisə (A, B, C…)</b> — Ω-nın istənilən alt çoxluğudur. Məsələn, «cüt xal gəldi» A = {2, 4, 6}. Təcrübə nəticəsində ω ∈ A olarsa, A hadisəsi <i>baş verib</i>.</p>
+<h3>Hadisə növləri</h3>
+<table><tr><th>Növ</th><th>Mənası</th><th>Misal (zər)</th></tr>
+<tr><td>Labüd</td><td>Həmişə baş verir, Ω-ya bərabərdir</td><td>«1-dən 6-ya qədər xal»</td></tr>
+<tr><td>Qeyri-mümkün</td><td>Heç vaxt baş vermir, ∅</td><td>«7 xal»</td></tr>
+<tr><td>Təsadüfi (mümkün)</td><td>Baş verə də bilər, verməyə də</td><td>«5 xal»</td></tr>
+<tr><td>Uyğunsuz</td><td>Eyni anda baş verə bilmir: AB = ∅</td><td>«cüt» və «tək»</td></tr>
+<tr><td>Əks hadisə <span class="o">A</span></td><td>A baş verməməsi: <span class="o">A</span> = Ω \ A</td><td>A = «cüt» ⇒ <span class="o">A</span> = «tək»</td></tr>
+<tr><td>Tam qrup</td><td>Cüt-cüt uyğunsuz və birləşməsi Ω-dır; ən azı biri mütləq baş verir</td><td>{1}, {2}, …, {6}</td></tr>
+<tr><td>Bərabər mümkün</td><td>Heç birinin baş vermə şansı digərindən çox deyil</td><td>1, 2, …, 6 xalları</td></tr>
+<tr><td>Müstəqil</td><td>Birinin baş verməsi digərinin ehtimalını dəyişmir</td><td>iki ayrı zərin nəticəsi</td></tr></table>
+</section>
+
+<section id="emeller"><h2>2. Hadisələr üzərində əməllər</h2>
+<table><tr><th>Əməl</th><th>Yazılışı</th><th>Mənası</th></tr>
+<tr><td>Birləşmə (cəm)</td><td>A ∪ B &nbsp;(A + B)</td><td>A və ya B (ən azı biri) baş verir</td></tr>
+<tr><td>Kəsişmə (hasil)</td><td>A ∩ B &nbsp;(AB)</td><td>A və B birlikdə baş verir</td></tr>
+<tr><td>Fərq</td><td>A \ B</td><td>A baş verir, B baş vermir</td></tr>
+<tr><td>Tamamlayıcı</td><td><span class="o">A</span></td><td>A baş vermir</td></tr></table>
+<div class="f">A ∪ B = B ∪ A &nbsp;·&nbsp; A(B ∪ C) = AB ∪ AC &nbsp;·&nbsp; A ∪ <span class="o">A</span> = Ω &nbsp;·&nbsp; A<span class="o">A</span> = ∅</div>
+<p><b>De Morqan qaydaları</b> (ən çox soruşulan eyniliklər):</p>
+<div class="f"><span class="o">A ∪ B</span> = <span class="o">A</span> ∩ <span class="o">B</span> &nbsp;&nbsp;|&nbsp;&nbsp; <span class="o">A ∩ B</span> = <span class="o">A</span> ∪ <span class="o">B</span></div>
+<div class="note">Yadda saxla: üst xətt çəkəndə «və ↔ və ya» dəyişir. «Heç biri baş vermədi» = <span class="o">A</span><span class="o">B</span>.</div>
+</section>
+
+<section id="aksiom"><h2>3. Kolmoqorov aksiomları</h2>
+<p>Ehtimal fəzası üç elementdən ibarətdir: Ω, hadisələr sistemi F (hadisələr cəbri/σ-cəbr) və hər A ∈ F hadisəsinə uyğun gələn P(A) ədədi. P aşağıdakı üç aksiomu ödəməlidir (A. N. Kolmoqorov, 1933):</p>
+<div class="f"><b>A1 (mənfi olmama):</b> P(A) ≥ 0<br><b>A2 (normallıq):</b> P(Ω) = 1<br><b>A3 (additivlik):</b> AB = ∅ olarsa, P(A ∪ B) = P(A) + P(B)</div>
+<p>Sonsuz sayda cüt-cüt uyğunsuz A₁, A₂, … üçün A3 genişlənir: P(⋃Aᵢ) = ΣP(Aᵢ) (σ-additivlik).</p>
+<div class="note"><b>Aksiomlarının ehtimal nəzəriyyəsinin inkişafında rolu.</b> Kolmoqorovdan əvvəl ehtimalın klassik, statistik və həndəsi təriflərinin hər birinin məhdudiyyəti var idi (məsələn, klassik tərif yalnız bərabər mümkün sonlu hallar üçündür). Aksiomatika «ehtimal nədir?» sualına yox, «ehtimal hansı qaydalara tabedir?» sualına cavab verdi: bütün köhnə təriflər onun xüsusi halına çevrildi. Nəticədə ehtimal nəzəriyyəsi çoxluqlar nəzəriyyəsi və ölçü nəzəriyyəsi üzərində ciddi riyazi elm oldu, təsadüfi proseslər və riyazi statistika onun əsasında qurulur.</div>
+</section>
+
+<section id="xasse"><h2>4. Ehtimalın xassələri</h2>
+<p>Hamısı yalnız A1–A3-dən çıxır.</p>
+<table><tr><th>Xassə</th><th>İsbatın ideyası</th></tr>
+<tr><td><b>1.</b> P(∅) = 0</td><td>Ω = Ω ∪ ∅, uyğunsuzdur ⇒ 1 = 1 + P(∅)</td></tr>
+<tr><td><b>2.</b> P(<span class="o">A</span>) = 1 − P(A)</td><td>A ∪ <span class="o">A</span> = Ω, uyğunsuzdur ⇒ P(A) + P(<span class="o">A</span>) = 1</td></tr>
+<tr><td><b>3.</b> A ⊂ B ⇒ P(A) ≤ P(B), P(B \ A) = P(B) − P(A)</td><td>B = A ∪ (B \ A), uyğunsuzdur; P(B\A) ≥ 0</td></tr>
+<tr><td><b>4.</b> 0 ≤ P(A) ≤ 1</td><td>A ⊂ Ω olduğundan 3-cü xassədən</td></tr>
+<tr><td><b>5.</b> P(A ∪ B) = P(A) + P(B) − P(AB)</td><td>A ∪ B = A ∪ (B \ AB), P(B\AB) = P(B) − P(AB)</td></tr>
+<tr><td><b>6.</b> Tam qrup: P(A₁) + … + P(Aₙ) = 1</td><td>A3 və P(Ω) = 1</td></tr></table>
+<div class="f">P(A ∪ B ∪ C) = P(A)+P(B)+P(C) − P(AB) − P(AC) − P(BC) + P(ABC)</div>
+<div class="note warn"><b>Tipik səhv:</b> uyğun hadisələr üçün P(A ∪ B) = P(A) + P(B) yazmaq. Bu yalnız AB = ∅ olduqda doğrudur. Eyni zamanda P(A ∪ B) ≤ P(A) + P(B) həmişə doğrudur.</div>
+</section>
+
+<section id="stat"><h2>5. Statistik ehtimal</h2>
+<p>Təcrübə n dəfə təkrar edilir, A hadisəsi m dəfə baş verir. <b>Nisbi tezlik</b>:</p>
+<div class="f">W(A) = m / n</div>
+<p>Təcrübələr çoxaldıqca W(A) müəyyən ədəd ətrafında dayanıqlaşır (tezliyin sabitliyi). Bu ədəd A-nın <b>statistik ehtimalı</b> sayılır: P*(A) ≈ W(A) (böyük n üçün).</p>
+<p>Nisbi tezlik də 0 ≤ W(A) ≤ 1, W(Ω) = 1, W(∅) = 0 şərtlərini və uyğunsuz hadisələr üçün additivliyi ödəyir, buna görə aksiomlara uyğundur.</p>
+<div class="note warn"><b>Çatışmazlığı:</b> təcrübə lazımdır, nəticə hər seriyada bir az fərqlənir, dəqiq ədəd vermir. Üstünlüyü: bərabər mümkünlük tələb etmir (məsələn, qüsurlu məhsul faizi, hava proqnozu).</div>
+</section>
+
+<section id="klassik"><h2>6. Klassik ehtimal</h2>
+<p>Tutaq ki, Ω sonlu və n sayda <b>bərabər mümkün</b>, cüt-cüt uyğunsuz nəticədən ibarətdir. A hadisəsinə m nəticə <b>əlverişlidir</b>. Onda:</p>
+<div class="f">P(A) = m / n &nbsp;&nbsp;(əlverişli hallar / bütün mümkün hallar)</div>
+<p><b>Şərtlər:</b> (1) nəticələrin sayı sonludur, (2) hamısı bərabər mümkündür. Bu şərtlərdən biri pozulsa, tətbiq etmək olmaz (məsələn, «iki zərin cəmi» 2…12 kimi 11 nəticə bərabər mümkün deyil, 36 cütdən istifadə etmək lazımdır).</p>
+<p><b>Nümunə:</b> iki zər atılır, cəmi 7. Əlverişli cütlər: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1), yəni m = 6, n = 36, P = 1/6.</p>
+<p><b>Xassələri:</b> P(Ω)=1, P(∅)=0, 0≤P(A)≤1, uyğunsuzlar üçün additivlik, yəni klassik ehtimal Kolmoqorov aksiomlarını ödəyir.</p>
+</section>
+
+<section id="komb"><h2>7. Kombinatorika elementləri</h2>
+<p><b>Vurma qaydası:</b> birinci seçim n₁, ikinci n₂ üsulladırsa, ardıcıl seçim n₁·n₂ üsulladır. <b>Toplama qaydası:</b> «ya bu, ya o» seçimində üsullar toplanır.</p>
+<table><tr><th>Anlayış</th><th>Düstur</th><th>Nə vaxt</th></tr>
+<tr><td>Permutasiya</td><td>Pₙ = n!</td><td>n elementin hamısı düzülür, sıra vacibdir</td></tr>
+<tr><td>Yerləşdirmə</td><td>Aₙᵏ = n!/(n−k)!</td><td>n-dən k seçilir, <b>sıra vacibdir</b></td></tr>
+<tr><td>Birləşmə</td><td>Cₙᵏ = n!/(k!(n−k)!)</td><td>n-dən k seçilir, <b>sıra vacib deyil</b></td></tr>
+<tr><td>Təkrarlı yerləşdirmə</td><td>nᵏ</td><td>hər dəfə n-dən seçilir, təkrar olur</td></tr>
+<tr><td>Təkrarlı permutasiya</td><td>n!/(n₁!n₂!…)</td><td>n₁, n₂, … eyni elementlər var</td></tr></table>
+<div class="f">0! = 1 &nbsp;·&nbsp; Cₙᵏ = Cₙⁿ⁻ᵏ &nbsp;·&nbsp; Cₙ⁰ = Cₙⁿ = 1 &nbsp;·&nbsp; Cₙ¹ = n &nbsp;·&nbsp; Aₙᵏ = Cₙᵏ · k!</div>
+<div class="note"><b>Qayda:</b> «Sıra vacibdir?» sualını ver. Bəli → Aₙᵏ (və ya Pₙ). Xeyr (qrup, komanda, kürələr dəstəsi) → Cₙᵏ.</div>
+</section>
+
+<section id="iki"><h2>8. Klassik tərif vasitəsilə iki ümumi məsələ</h2>
+<h3>Məsələ 1. Seçmə (hipergeometrik sxem)</h3>
+<p>N elementdən M-i «xüsusi»dir (məsələn, ağ kürə, qüsurlu detal). Təsadüfi n element seçilir. Seçilənlər arasında <b>düz k</b> xüsusi element olması ehtimalı:</p>
+<div class="f">P = Cₘᵏ · C<sub>N−M</sub><sup>n−k</sup> / Cₙᴺ &nbsp;&nbsp;<small>(bütün hallar C<sub>N</sub><sup>n</sup>)</small></div>
+<p>Məxrəc: N-dən n seçmə sayı. Surət: M-dən k xüsusini <i>və</i> qalan N−M-dən n−k adini seçmək (vurma qaydası). Əks hadisə üsulu: «ən azı biri» = 1 − «heç biri».</p>
+<h3>Məsələ 2. Hissəciklərin xanalara paylanması</h3>
+<p>n müxtəlif hissəcik N xanaya təsadüfi paylanır. Hər hissəcik N xanadan istənilənə düşə bilər, ona görə bütün hallar Nⁿ.</p>
+<div class="f">Hər xanada ən çox 1 hissəcik: P = Aₙᴺ / Nⁿ = N(N−1)…(N−n+1) / Nⁿ</div>
+<p>Eyni sxemlə ad günü məsələsi həll olunur: n nəfərdən heç ikisinin ad günü üst-üstə düşmür, N = 365. n = 23 üçün bu ehtimal 0,5-dən kiçikdir, yəni üst-üstə düşmə ehtimalı ≈ 0,507-dir.</p>
+</section>
+
+<section id="numune"><h2>9. Həll olunmuş nümunələr</h2>
+<details><summary>Nümunə 1. Qutuda 5 ağ, 3 qara kürə var. 2 kürə çəkilir. Biri ağ, biri qara olması ehtimalı?</summary>
+<p>n = C₈² = 28. Əlverişli: C₅¹·C₃¹ = 15. <b>P = 15/28 ≈ 0,536</b>.</p></details>
+<details><summary>Nümunə 2. P(A)=0,6, P(B)=0,5, P(A∪B)=0,8. P(AB) = ?</summary>
+<p>Toplama teoremi: 0,8 = 0,6 + 0,5 − P(AB) ⇒ <b>P(AB) = 0,3</b>. Yoxlama: P(AB) ≤ min(P(A),P(B)) = 0,5 ✓.</p></details>
+<details><summary>Nümunə 3. 3 nəfər təsadüfi 12 aydan birində doğulur. Doğum aylarının hamısı müxtəlif olması ehtimalı?</summary>
+<p>Bütün hallar 12³ = 1728; əlverişli A₁₂³ = 12·11·10 = 1320. <b>P = 1320/1728 = 55/72 ≈ 0,764</b>.</p></details>
+<details><summary>Nümunə 4. 52 kartdan 1 kart çəkilir. Ürək və ya kral gəlməsi?</summary>
+<p>Ürək 13, kral 4, ürək kralı həm ikisidir (1). Ümumi hal: P = 13/52 + 4/52 − 1/52 = <b>16/52 = 4/13</b>.</p></details>
+</section>
+
+<section id="test"><h2>10. Özünü yoxla</h2>
+<p>İki rejim var. <b>Məşq</b> rejimində cavab verən kimi izah görünür. <b>İmtahan</b> rejimində 12 təsadüfi sual və 20 dəqiqə var, nəticə sonda açılır. Praktiki məsələlərin cavabını kəsr (1/3) və ya onluq kəsr (0,3333) şəklində yaz, 3 rəqəm dəqiqlik yetərlidir.</p>
+<div class="bar2">
+<div class="seg" id="mode"><button class="on" data-m="practice">Məşq</button><button data-m="exam">İmtahan</button></div>
+<div class="seg" id="filt"><button class="on" data-f="all">Hamısı</button><button data-f="n">Nəzəri</button><button data-f="p">Praktiki</button></div>
+<span id="clock"></span></div>
+<div id="score" aria-live="polite"></div>
+<div id="qs"></div>
+<div class="btns"><button id="finish" hidden>İmtahanı bitir</button><button class="g" id="again">Yenidən başla</button></div>
+</section>
+</main></div>
+<footer>Ehtimal nəzəriyyəsi · Mövzu 1 · özünü yoxlama saytı</footer>
+<script src="script.js"></script>
+</body></html>
